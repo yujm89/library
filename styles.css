@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.book{
+    border: solid;
+    padding: 4px;
+}
