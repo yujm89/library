@@ -1,5 +1,5 @@
 function Book(title, author, pages, read){
-    const id = crypto.randomUUID();
+    this.id = crypto.randomUUID();
     this.title = title;
     this.author = author;
     this.pages = pages;
@@ -27,6 +27,7 @@ const display = document.querySelector(".container");
 
 function createBookCard(Book){
     let book = document.createElement("div");
+    book.dataset.id = Book.id
     book.classList.add("book")
     let title = document.createElement("p");
     title.textContent = `Title: ${Book.title}`;
