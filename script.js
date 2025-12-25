@@ -17,11 +17,13 @@ function addBookToLibrary(title, author, pages, read){
     return newBook
 }
 
-addBookToLibrary("monkey", "blankson", 299, false);
-addBookToLibrary("monkey2", "blankson", 299, true);
-addBookToLibrary("monkey3", "blankson", 299, true);
-addBookToLibrary("monkey4", "blankson", 299, false);
-addBookToLibrary("monkey5", "blankson", 299, false);
+addBookToLibrary("book1", "monkey2", 232, false);
+addBookToLibrary("book2", "monkey2", 232, true);
+addBookToLibrary("book3", "monkey2", 232, true);
+addBookToLibrary("book4", "monkey2", 232, false);
+addBookToLibrary("book5", "monkey2", 232, true);
+
+
 
 const display = document.querySelector(".container");
 
@@ -38,11 +40,23 @@ function createBookCard(Book){
     let read = document.createElement("p");
     read.textContent = `${Book.read ? "read" : "not yet read"}`;
 
+    let delButton = document.createElement("button");
+    delButton.textContent = "delete book";
+    delButton.classList.add("delete")
+    delButton.dataset.id = Book.id
+
+    delButton.addEventListener("click", (event) => {
+        let pressed = event.currentTarget.dataset.id;
+        let bookToDelete = document.querySelector(`div[data-id="${pressed}"]`);
+        bookToDelete.remove()
+    });
+
 
     book.appendChild(title);
     book.appendChild(author);
     book.appendChild(pages);
     book.appendChild(read);
+    book.appendChild(delButton)
 
     display.appendChild(book);
 }
@@ -84,5 +98,6 @@ submitButton.addEventListener("click", () => {
     createBookCard(addBookToLibrary(newTitle.value, newAuthor.value, newPages.value, newRead.checked));
 
 });
+
 
 
